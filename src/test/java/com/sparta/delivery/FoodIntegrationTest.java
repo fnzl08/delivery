@@ -267,9 +267,11 @@ class FoodIntegrationTest {
         void test3() throws JsonProcessingException {
             // given
             List<FoodDto> foodsRequest = new ArrayList<>();
-            // 음식1 추가
+            // 음식2 추가 (음식명: "치즈 감자튀김")
             foodsRequest.add(food2);
+            // 음식3 추가 (음식명: "쉐이크")
             foodsRequest.add(food3);
+            // 음식2 중복 추가 (음식명: "치즈 감자튀김")
             foodsRequest.add(food2);
 
             String requestBody = mapper.writeValueAsString(foodsRequest);

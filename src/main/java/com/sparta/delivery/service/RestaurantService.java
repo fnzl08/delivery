@@ -21,7 +21,7 @@ public class RestaurantService {
     public Restaurant addRestaurant(RestaurantRequestDto requestDto) {
 
         int minOrderPrice = requestDto.getMinOrderPrice();
-        int deliveryFee = requestDto.getDeliveryFee();
+        Long deliveryFee = requestDto.getDeliveryFee();
 
         if (1000 > minOrderPrice || minOrderPrice > 100000) {
             throw new IllegalArgumentException("최소주문 가격 허용값을 벗어났습니다.");

@@ -3,6 +3,7 @@ package com.sparta.delivery.dto;
 import com.sparta.delivery.domain.OrderDetail;
 import lombok.Getter;
 
+//주문에 들어갈거. foods에 음식이름, 양, 가격
 @Getter
 public class FoodsResponseDto {
     private String name;

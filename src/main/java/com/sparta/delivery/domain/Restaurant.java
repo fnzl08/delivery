@@ -24,10 +24,10 @@ public class Restaurant {
     private int minOrderPrice;
 
     @Column(nullable = false)
-    private int deliveryFee;
+    private Long deliveryFee;
 
     @Builder
-    public Restaurant(String name, int minOrderPrice, int deliveryFee){
+    public Restaurant(String name, int minOrderPrice, Long deliveryFee){
         this.name = name;
         this.minOrderPrice = minOrderPrice;
         this.deliveryFee = deliveryFee;

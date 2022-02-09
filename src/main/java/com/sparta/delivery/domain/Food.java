@@ -27,7 +27,7 @@ public class Food {
     //조인컬럼은 외래키 지정 어노테이션
     //레스토랑 아이디를 그렇게 컬럼에 추가해서 레스토랑으로 저장.
     @ManyToOne
-    @JoinColumn(name = "restaurant id",nullable = false)
+    @JoinColumn(name = "restaurant_id",nullable = false)
     private Restaurant restaurant;
 
 
