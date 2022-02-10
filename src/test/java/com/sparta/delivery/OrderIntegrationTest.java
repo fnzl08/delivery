@@ -2,6 +2,7 @@ package com.sparta.delivery;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.delivery.FoodIntegrationTest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

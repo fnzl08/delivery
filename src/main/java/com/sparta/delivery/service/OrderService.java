@@ -33,6 +33,7 @@ public class OrderService {
     //orderrequest에 식당 id랑 foods 받아와서 response로 내야지. post지만 api명세서 보면 리스트로 반환중
     @Transactional
     public OrdersResponseDto orderFood(OrdersRequestDto ordersRequestDto) {
+
         Restaurant restaurant = restaurantRepository.findById(ordersRequestDto.getRestaurantId())
                 .orElseThrow(() -> new NullPointerException("등록되지 않은 음식점입니다."));
 
@@ -44,7 +45,7 @@ public class OrderService {
 
         List<FoodsResponseDto> foodsResponseDtoList = new ArrayList<>();
         //총가격
-        Long totalPrice = 0L;
+        int totalPrice = 0;
 
 
         for (OrderDetail orderDetailFor : orderDetails) {
@@ -81,23 +82,23 @@ public class OrderService {
 //                List<FoodsResponseDto> foodsResponseDtoList = new ArrayList<>();
             //리스트에 각 주문상세추가
             foodsResponseDtoList.add(foodsResponseDto);
-            totalPrice += (long) food.getPrice() * quantity;
+            totalPrice += food.getPrice() * quantity;
             orderDetailList.add(orderDetail);
-
-
-        }//이까지 orderDetail 포문 돌려 저장한 것
+        }
+        //이까지 orderDetail 포문 돌려 저장한 것
         //자 이제 총 주문 에러 띄우기
 //            totalPrice +=food.getPrice() * quantity; //오...이거 위에 포문 바깥에 두니까 food를 못찾네. 여긴 선언 안되어있어서
 
         //레스토랑 안가져왔더니 에러뜨네 레스토랑 가져오자 -> 위로 올려줌
-//        Restaurant restaurant = restaurantRepository.findById(ordersRequestDto.getRestaurantId())
-//                .orElseThrow(() -> new NullPointerException("등록되지 않은 음식점입니다."));
+    // ㅇ;Restaurant restaurant = restaurantRepository.findById(ordersRequestDto.getRestaurantId())
+    // .orElseThrow(() -> new NullPointerException("등록되지 않은 음식점입니다."));
+
         if (totalPrice < restaurant.getMinOrderPrice()) {
             throw new IllegalArgumentException("최소 주문 가격 이상으로 주문해주세요.");
         }
 
         //이제 배달비 더해주기
-        Long deliveryFee = restaurant.getDeliveryFee();
+        int deliveryFee = restaurant.getDeliveryFee();
         totalPrice += deliveryFee;
 
         //저장해주기
@@ -112,7 +113,7 @@ public class OrderService {
 
     //주문조회 -테스트코드보면 주문조회에는 orders(식당 이름, detail의 foods(음식이름, 수량, 가격), fee, totalprice)
     @Transactional //우리 파인드올 할거임.
-    public List<OrdersResponseDto> findAllOrder() {
+    public List<OrdersResponseDto> findOrder() {
 
         //orderresponse에다가 넣을거임.
         List<OrdersResponseDto> ordersResponseDtoList = new ArrayList<>();
@@ -122,7 +123,7 @@ public class OrderService {
 
         //1. 배달료는 Orders에 있는 레스토랑 이름으로 레스토랑레포지에서 배달료 찾아서 선언
         for (Orders orders : ordersList) {
-            Long deliveryFee = restaurantRepository.findByName(orders.getRestaurantName()).getDeliveryFee();
+            int deliveryFee = restaurantRepository.findByName(orders.getRestaurantName()).getDeliveryFee();
 
             //그리고 foods를 받아와야하는데 해당 foods는 orders안의 orderdetail에
             //그리고 orderdetail에 foodresponsedto들어가니까 갖고오기

@@ -21,7 +21,7 @@ public class RestaurantService {
     public Restaurant addRestaurant(RestaurantRequestDto requestDto) {
 
         int minOrderPrice = requestDto.getMinOrderPrice();
-        Long deliveryFee = requestDto.getDeliveryFee();
+        int deliveryFee = requestDto.getDeliveryFee();
 
         if (1000 > minOrderPrice || minOrderPrice > 100000) {
             throw new IllegalArgumentException("최소주문 가격 허용값을 벗어났습니다.");
@@ -29,7 +29,7 @@ public class RestaurantService {
         if (minOrderPrice % 100 != 0) {
             throw new IllegalArgumentException("최소주문 가격은 100원 단위로 입력해야 합니다.");
         }
-        if ((0 > deliveryFee) || (deliveryFee > 10_000)) {
+        if ((0 > deliveryFee) || (deliveryFee > 10000)) {
             throw new IllegalArgumentException("배달비는 0원 이상 10000원 이하입니다.");
         }
         if (deliveryFee % 500 != 0) {
@@ -48,7 +48,7 @@ public class RestaurantService {
     }
 
     @Transactional
-    public List<Restaurant> findAllRestaurant(){
+    public List<Restaurant> findRestaurant(){
 
         return restaurantRepository.findAll();
     }

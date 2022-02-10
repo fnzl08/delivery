@@ -29,8 +29,8 @@ public class OrderController {
 
 
     @GetMapping("/orders")
-    public List<OrdersResponseDto> findAllOrder() {
+    public List<OrdersResponseDto> findOrder() {
 
-        return orderService.findAllOrder();
+        return orderService.findOrder();
     }
 }

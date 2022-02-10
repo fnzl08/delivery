@@ -7,5 +7,5 @@ import lombok.Getter;
 public class RestaurantRequestDto {
     private String name;
     private int minOrderPrice;
-    private Long deliveryFee;
+    private int deliveryFee;
 }

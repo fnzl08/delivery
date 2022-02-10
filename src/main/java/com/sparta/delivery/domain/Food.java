@@ -25,7 +25,6 @@ public class Food {
 
     //음식이 many. 식당이 One, 식당 아이디가 푸드 테이블에 들어가있으니까 외래키는 resId가 가진다.
     //조인컬럼은 외래키 지정 어노테이션
-    //레스토랑 아이디를 그렇게 컬럼에 추가해서 레스토랑으로 저장.
     @ManyToOne
     @JoinColumn(name = "restaurant_id",nullable = false)
     private Restaurant restaurant;

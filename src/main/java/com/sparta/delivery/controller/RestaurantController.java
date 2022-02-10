@@ -27,8 +27,8 @@ public class RestaurantController {
 
     //식당 조회
     @GetMapping("/restaurants")
-    public List<Restaurant> findAllRestaurant() {
+    public List<Restaurant> findRestaurant() {
 
-        return restaurantService.findAllRestaurant();
+        return restaurantService.findRestaurant();
     }
 }

@@ -20,11 +20,11 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String restaurantName;
 
-    @Column
-    private Long totalPrice;
+    @Column(nullable = false)
+    private int totalPrice;
 
 
     //컬럼안에 orderdetail 아이디 들어가야하니까 오더에만 단방향. 근데 order가 one 쪽인 상황(detail이 여러개)
@@ -33,7 +33,7 @@ public class Orders {
     private List<OrderDetail> foods; //디테일내용리스트 컬럼 foods  저장할게. 이걸로 꺼내 써
 
     @Builder
-    public Orders(String restaurantName,  List<OrderDetail> orderDetails, Long totalPrice){
+    public Orders(String restaurantName,  List<OrderDetail> orderDetails, int totalPrice){
         this.restaurantName = restaurantName;
         this.foods = orderDetails;
         this.totalPrice = totalPrice;

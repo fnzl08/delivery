@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Restaurant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -24,10 +24,10 @@ public class Restaurant {
     private int minOrderPrice;
 
     @Column(nullable = false)
-    private Long deliveryFee;
+    private int deliveryFee;
 
     @Builder
-    public Restaurant(String name, int minOrderPrice, Long deliveryFee){
+    public Restaurant(String name, int minOrderPrice, int deliveryFee){
         this.name = name;
         this.minOrderPrice = minOrderPrice;
         this.deliveryFee = deliveryFee;
